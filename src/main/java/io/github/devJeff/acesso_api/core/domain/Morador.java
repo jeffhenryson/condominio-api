@@ -23,6 +23,10 @@ public class Morador {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getCpf() {
         return cpf;
     }

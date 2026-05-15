@@ -3,6 +3,7 @@ package io.github.devJeff.acesso_api.core.domain;
 import java.time.LocalDateTime;
 
 public class Visita {
+
     private Long id;
     private LocalDateTime datahora;
     private Long idMorador;
