@@ -1,5 +1,7 @@
 package io.github.devJeff.acesso_api.adapter.repositories;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class VisitanteReporitoryAdapter implements VisitanteRepositoryPort{
+public class VisitanteReporitoryAdapter implements VisitanteRepositoryPort {
 
     private final VisitanteRepository visitanteRepository;
     private final PessoaRepositoryAdapter pessoaRepository;
@@ -24,12 +26,9 @@ public class VisitanteReporitoryAdapter implements VisitanteRepositoryPort{
     }
 
     @Override
-    public Visitante obtainByRg(String rg) {
-        VisitanteEntity visitanteByRg = visitanteRepository.findByRg(rg);
-        if (visitanteByRg == null) {
-            return null;
-        }
-        return modelMapper.map(visitanteByRg, Visitante.class);
+    public Optional<Visitante> obtainByRg(String rg) {
+        return visitanteRepository.findByRg(rg)
+            .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class));
     }
-    
+
 }

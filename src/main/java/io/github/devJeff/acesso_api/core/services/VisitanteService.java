@@ -3,7 +3,6 @@ package io.github.devJeff.acesso_api.core.services;
 import io.github.devJeff.acesso_api.core.domain.Visitante;
 import io.github.devJeff.acesso_api.core.ports.VisitanteRepositoryPort;
 import io.github.devJeff.acesso_api.core.ports.VisitanteServicePort;
-
 public class VisitanteService implements VisitanteServicePort {
 
     private final VisitanteRepositoryPort visitanteRepositoryPort;
@@ -15,12 +14,11 @@ public class VisitanteService implements VisitanteServicePort {
     @Override
     public Visitante createVisitante(Visitante visitante) {
 
-        Visitante visitanteExistente = visitanteRepositoryPort.obtainByRg(visitante.getRg());
-        if (visitanteExistente != null) {
-            throw new IllegalArgumentException("Usuário já existe!");
-        }
-        return visitanteRepositoryPort.create(visitante);
+        visitanteRepositoryPort.obtainByRg(visitante.getRg()).ifPresent(v -> {
+            throw new IllegalArgumentException("Visitante já existe!");
+        });
 
+        return visitanteRepositoryPort.create(visitante);
     }
 
 }
