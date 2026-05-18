@@ -1,5 +1,6 @@
 package io.github.devJeff.acesso_api.adapter.repositories;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -28,7 +29,14 @@ public class VisitanteReporitoryAdapter implements VisitanteRepositoryPort {
     @Override
     public Optional<Visitante> obtainByRg(String rg) {
         return visitanteRepository.findByRg(rg)
-            .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class));
+                .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class));
+    }
+
+    @Override
+    public Collection<Visitante> listAll() {
+
+        return visitanteRepository.findAll().stream()
+                .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class)).toList();
     }
 
 }

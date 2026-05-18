@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+
 @RestController
 @RequestMapping("api/moradores")
 @RequiredArgsConstructor
@@ -29,5 +30,5 @@ public class MoradorController {
         Morador novoMorador = moradorServicePort.createMorador(moradorConverter.toDomain(moradorDto));
         return moradorConverter.toDto(novoMorador);
     }
-
+    
 }
