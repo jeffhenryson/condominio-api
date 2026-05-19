@@ -1,7 +1,9 @@
 package io.github.devJeff.acesso_api.core.ports;
 
-import io.github.devJeff.acesso_api.core.domain.Morador;
+import java.util.Collection;
 
+import io.github.devJeff.acesso_api.core.domain.Morador;
 public interface MoradorServicePort {
     Morador createMorador(Morador morador);
+    Collection<Morador> findAll();
 }

@@ -34,7 +34,6 @@ public class VisitanteReporitoryAdapter implements VisitanteRepositoryPort {
 
     @Override
     public Collection<Visitante> listAll() {
-
         return visitanteRepository.findAll().stream()
                 .map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class)).toList();
     }
